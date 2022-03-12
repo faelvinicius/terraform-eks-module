@@ -19,10 +19,6 @@ resource "aws_launch_template" "node" {
     create_before_destroy = true
   }
 
-  depends_on = [
-    aws_security_group.node_group_sg,
-    aws_iam_instance_profile.eks_node,
-  ]
 
   tags = {
     Name = format("%s-node-group", local.name)  

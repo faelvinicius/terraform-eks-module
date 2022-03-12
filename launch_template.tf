@@ -4,7 +4,10 @@ resource "aws_launch_template" "node" {
 
   ebs_optimized        = var.ebs_optimized
   image_id             = var.ami_id
-  iam_instance_profile = aws_iam_instance_profile.eks_node.name
+  
+  iam_instance_profile {
+    name = aws_iam_instance_profile.eks_node.name
+  }
 
   instance_type        = var.instance_types
 
@@ -15,7 +18,7 @@ resource "aws_launch_template" "node" {
   }
 
   depends_on = [
-    aws_security_group.node_grou_sg,
+    aws_security_group.node_group_sg,
     aws_iam_instance_profile.eks_nodes,
   ]
 

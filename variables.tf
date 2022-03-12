@@ -23,7 +23,7 @@ variable "disk_size" {
 }
 
 variable "instance_types" {
-    defdefault = [ "t3.small" ]
+    default = [ "t3.small" ]
 }
 
 variable "environment" {}

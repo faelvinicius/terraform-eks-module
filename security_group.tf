@@ -7,3 +7,36 @@ resource "aws_security_group_rule" "eks_sg_ingress_rule" {
     security_group_id = aws_eks_cluster.eks_cluster.vpc_config[0].cluster_security_group_id
     type = "ingress"
 }
+
+resource "aws_security_group" "node_group_sg" {
+  vpc_id      = aws_vpc.eks_vpc.id
+  name        = join("-", ["SG", local.name])
+  description = "Security Group Launch Template"
+
+  ingress {
+    description = "HTTP Port"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "HTTPS Port"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }  
+
+  egress {
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    "Name"      = join("-", ["SG", local.name])
+  }
+}

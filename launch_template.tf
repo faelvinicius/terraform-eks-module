@@ -1,0 +1,25 @@
+resource "aws_launch_template" "node" {
+
+  name_prefix = join("-", ["lt", local.name])
+
+  ebs_optimized        = var.ebs_optimized
+  image_id             = var.ami_id
+  iam_instance_profile = aws_iam_instance_profile.eks_node.name
+
+  instance_type        = var.instance_types
+
+  vpc_security_group_ids = [ aws_security_group.node_group_sg.id ]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  depends_on = [
+    aws_security_group.node_grou_sg,
+    aws_iam_instance_profile.eks_nodes,
+  ]
+
+  tags = {
+    Name = format("%s-node-group", local.name)  
+  }
+}

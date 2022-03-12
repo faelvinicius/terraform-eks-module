@@ -60,3 +60,8 @@ resource "aws_iam_role_policy_attachment" "eks_AmazonEC2ContainerRegistryReadOnl
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.eks_node_role.name
 }
+
+resource "aws_iam_instance_profile" "eks_node" {
+  name     = join("-", ["instance-profile", local.name])
+  role     = aws_iam_role.eks_node_role.name
+}

@@ -5,7 +5,8 @@ resource "aws_eks_node_group" "eks_node_group" {
   node_role_arn   = aws_iam_role.eks_node_role.arn
   
   launch_template { 
-    name = aws_launch_template.node.name
+    name    = aws_launch_template.node.name
+    version = "latest_version" 
   }  
 
   disk_size       = var.disk_size

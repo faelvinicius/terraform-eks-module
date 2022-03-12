@@ -1,6 +1,6 @@
 resource "aws_eks_node_group" "eks_node_group" {
     
-  cluster_name    = local.name
+  cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = format("%s-node-group", local.name)
   node_role_arn   = aws_iam_role.eks_node_role.arn
 
@@ -23,5 +23,9 @@ resource "aws_eks_node_group" "eks_node_group" {
     aws_iam_role_policy_attachment.eks_AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.eks_AmazonEC2ContainerRegistryReadOnly
   ]
+
+  tags = {
+    Name = format("%s-node-group", local.name)
+  }
 
 }

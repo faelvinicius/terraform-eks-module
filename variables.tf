@@ -39,3 +39,4 @@ variable "ebs_optimized" {
   type        = bool
   default     = false
 }
+

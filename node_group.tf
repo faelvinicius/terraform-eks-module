@@ -4,13 +4,10 @@ resource "aws_eks_node_group" "eks_node_group" {
   node_group_name = format("%s-node-group", local.name)
   node_role_arn   = aws_iam_role.eks_node_role.arn
   
-  launch_template { 
-    name    = aws_launch_template.node.name
-    version = 1
-  }  
-
-  #disk_size       = var.disk_size
-  #instance_types  = var.instance_types
+  launch_template  {
+    id      = aws_launch_template.node.id
+    version = aws_launch_template.node.latest_version
+  }
 
   subnet_ids = [
     aws_subnet.eks_subnet_private_1a.id, 
@@ -23,10 +20,15 @@ resource "aws_eks_node_group" "eks_node_group" {
     min_size     = var.min_size
   }
 
+  labels = {
+    lifecycle = "OnDemand"
+  }
+
   depends_on = [
+    aws_launch_template.node,
     aws_iam_role_policy_attachment.eks_AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.eks_AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.eks_AmazonEC2ContainerRegistryReadOnly
+    aws_iam_role_policy_attachment.eks_AmazonEC2ContainerRegistryReadOnly,
   ]
 
   tags = {

@@ -6,7 +6,7 @@ resource "aws_eks_node_group" "eks_node_group" {
   
   launch_template { 
     name    = aws_launch_template.node.name
-    version = "latest_version" 
+    version = 1
   }  
 
   disk_size       = var.disk_size

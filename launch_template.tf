@@ -5,7 +5,7 @@ resource "aws_launch_template" "node" {
   ebs_optimized        = var.ebs_optimized
   image_id             = var.ami_id
   
-  default_version      = "latest_version"
+  default_version      = 1
 
   iam_instance_profile {
     name = aws_iam_instance_profile.eks_node.name

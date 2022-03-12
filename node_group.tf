@@ -5,7 +5,7 @@ resource "aws_eks_node_group" "eks_node_group" {
   node_role_arn   = aws_iam_role.eks_node_role.arn
 
   disk_size       = var.disk_size
-  instance_types  = var.instace_types  
+  instance_types  = var.instance_types
 
   subnet_ids = [
     aws_subnet.eks_subnet_private_1a, 

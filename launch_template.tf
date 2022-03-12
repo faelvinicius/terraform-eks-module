@@ -7,9 +7,9 @@ resource "aws_launch_template" "node" {
   
   default_version      = 1
 
-  iam_instance_profile {
-    name = aws_iam_instance_profile.eks_node.name
-  }
+  #iam_instance_profile {
+  #  name = aws_iam_instance_profile.eks_node.name
+  #}
 
   instance_type        = var.instance_types
 

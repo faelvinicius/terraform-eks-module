@@ -19,7 +19,7 @@ resource "aws_launch_template" "node" {
 
   depends_on = [
     aws_security_group.node_group_sg,
-    aws_iam_instance_profile.eks_nodes,
+    aws_iam_instance_profile.eks_node,
   ]
 
   tags = {

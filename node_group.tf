@@ -8,8 +8,8 @@ resource "aws_eks_node_group" "eks_node_group" {
   instance_types  = var.instance_types
 
   subnet_ids = [
-    aws_subnet.eks_subnet_private_1a, 
-    aws_subnet.eks_subnet_private_1b
+    aws_subnet.eks_subnet_private_1a.id, 
+    aws_subnet.eks_subnet_private_1b.id
   ]
 
   scaling_config {

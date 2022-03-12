@@ -5,6 +5,6 @@ resource "aws_vpc" "eks_vpc" {
   enable_dns_support    = true
 
   tags = {
-    Name = format("%s-vpc",var.local.name)
+    Name = format("%s-vpc", local.name)
   }
 }

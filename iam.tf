@@ -2,7 +2,7 @@
 
 resource "aws_iam_role" "eks_master_role" {
 
-  name = format("%s-master-role", var.cluster_name)
+  name = format("%s-master-role", local.name)
   
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

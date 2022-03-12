@@ -18,9 +18,9 @@ variable "min_size" {
     default = 1
 }
 
-variable "disk_size" {
-    default = 10
-}
+#variable "disk_size" {
+#    default = 10
+#}
 
 variable "instance_types" {
     default = "t3.small" 

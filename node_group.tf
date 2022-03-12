@@ -9,7 +9,7 @@ resource "aws_eks_node_group" "eks_node_group" {
     version = 1
   }  
 
-  disk_size       = var.disk_size
+  #disk_size       = var.disk_size
   #instance_types  = var.instance_types
 
   subnet_ids = [
